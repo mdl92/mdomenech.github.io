@@ -504,7 +504,7 @@ export default function Portfolio() {
 
             <div className="p-8 bg-slate-900/50 rounded-lg border border-cyan-500/20 animate-pulse-glow">
               <p className="text-gray-400 mb-4">O llámame al</p>
-              <p className="text-2xl font-bold text-cyan-400 mono">[TU_TELÉFONO]</p>
+              <p className="text-2xl font-bold text-cyan-400 mono">673257028</p>
             </div>
           </div>
         </section>
