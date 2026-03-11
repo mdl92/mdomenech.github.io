@@ -512,7 +512,7 @@ export default function Portfolio() {
             <div className="flex flex-wrap justify-center gap-8 mb-16">
               <a href="mailto:[TU_EMAIL]" className="flex items-center gap-3 px-6 py-3 bg-cyan-500/10 border border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/20 transition group">
                 <Mail className="w-5 h-5 text-cyan-400 group-hover:animate-bounce" />
-                <span>[TU_EMAIL]</span>
+                <span>miriamdomlop@gmail.com</span>
               </a>
               <a href="https://linkedin.com/in/[TU_LINKEDIN]" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 bg-pink-500/10 border border-pink-500/50 rounded-lg hover:border-pink-400 hover:bg-pink-500/20 transition group">
                 <Linkedin className="w-5 h-5 text-pink-400 group-hover:animate-bounce" />
