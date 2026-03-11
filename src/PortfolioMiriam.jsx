@@ -260,10 +260,13 @@ export default function Portfolio() {
         {/* NAVBAR */}
         <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-slate-950/80 border-b border-cyan-500/20">
           <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            {/* Logo */}
             <div className="mono text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500">
               MDL
             </div>
-            <div className="flex gap-8 text-sm">
+
+            {/* Menu Desktop */}
+            <div className="hidden md:flex gap-8 text-sm">
               {menu.map((item) => (
                 <div
                   key={item.id}
@@ -277,6 +280,25 @@ export default function Portfolio() {
                   {item.label}
                 </div>
               ))}
+            </div>
+
+            {/* Menu Mobile */}
+            <div className="md:hidden overflow-x-auto scrollbar-hide">
+              <div className="flex gap-6 min-w-max snap-x snap-mandatory">
+                {menu.map((item) => (
+                  <div
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`nav-item cursor-pointer transition snap-center px-3 py-2 rounded-lg ${
+                      activeSection === item.id
+                        ? "bg-cyan-500/20 text-cyan-400"
+                        : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+                    }`}
+                  >
+                    {item.label}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </nav>
