@@ -283,28 +283,30 @@ export default function Portfolio() {
             </div>
 
             {/* Menu Mobile */}
-            <div className="md:hidden relative w-full">
-              {/* Contenedor con fade a los lados */}
-              <div className="absolute inset-y-0 left-0 w-12 pointer-events-none bg-gradient-to-r from-slate-950"></div>
-              <div className="absolute inset-y-0 right-0 w-12 pointer-events-none bg-gradient-to-l from-slate-950"></div>
+            <div className="md:hidden relative flex-1 ml-4">
+              
+              {/* Fade izquierdo */}
+              <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-r from-slate-950/80 to-transparent z-10"></div>
 
-              <div
-                className="overflow-x-auto scrollbar-hide flex gap-6 px-4 py-2 snap-x snap-mandatory"
-              >
+              {/* Fade derecho */}
+              <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-l from-slate-950/80 to-transparent z-10"></div>
+
+              <div className="flex overflow-x-auto gap-6 scrollbar-hide whitespace-nowrap">
                 {menu.map((item) => (
-                  <div
+                  <span
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`nav-item cursor-pointer snap-center px-3 py-2 rounded-lg transition ${
+                    className={`cursor-pointer transition text-sm ${
                       activeSection === item.id
-                        ? "bg-cyan-500/20 text-cyan-400"
-                        : "text-gray-300 hover:bg-cyan-500/10 hover:text-cyan-400"
+                        ? "text-cyan-400"
+                        : "text-gray-300 hover:text-cyan-400"
                     }`}
                   >
                     {item.label}
-                  </div>
+                  </span>
                 ))}
               </div>
+
             </div>
           </div>
         </nav>

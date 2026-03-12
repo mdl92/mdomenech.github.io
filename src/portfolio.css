@@ -207,3 +207,33 @@ canvas {
     border-radius: 50%;
     background: rgba(0, 217, 255, 0.1);
 }
+
+/* Oculta scrollbar */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE y Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari y Opera */
+}
+
+/* Gradiente lateral */
+.navbar-fade-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3rem; /* Ajusta según el tamaño del fade */
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(15,15,15,1), rgba(15,15,15,0));
+}
+
+.navbar-fade-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3rem;
+    pointer-events: none;
+    background: linear-gradient(to left, rgba(15,15,15,1), rgba(15,15,15,0));
+}
