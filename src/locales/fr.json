@@ -1,0 +1,28 @@
+{
+    "hero": {
+        "welcome": "Bienvenue dans mon portfolio",
+        "hello": "Bonjour, je suis",
+        "description": "Développeuse logicielle passionnée par la création de solutions robustes et évolutives. Spécialisée en développement full-stack avec une expérience dans les architectures distribuées, les APIs et les systèmes complexes.",
+        "viewWork": "Voir mes projets",
+        "downloadCV": "Télécharger le CV"
+    },
+    "about": {
+        "title": "À propos de moi",
+        "p1": "Je suis une développeuse Junior diplômée en Ingénierie Informatique (mention Développement Logiciel) de la Communauté Valencienne. J'ai une expérience pratique dans le développement d'applications, la migration de services legacy, les architectures distribuées et les systèmes temps réel.",
+        "p2": "Mon objectif est d'écrire un code propre, maintenable et qui résout de vrais problèmes. J'aime apprendre de nouvelles technologies et collaborer au sein d'équipes multidisciplinaires."
+    },
+    "experience": {
+        "title": "Expérience"
+    },
+    "projects": {
+        "title": "Projets Phares"
+    },
+    "education": {
+        "title": "Formation et Langues"
+    },
+    "contact": {
+        "title": "On se parle ?",
+        "description": "Je suis toujours ouverte aux collaborations, aux projets intéressants et aux nouvelles opportunités. N'hésitez pas à me contacter via l'un de ces canaux.",
+        "call": "Ou appelez-moi au"
+    }
+}

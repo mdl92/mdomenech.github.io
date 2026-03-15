@@ -1,0 +1,28 @@
+{
+    "hero": {
+        "welcome": "Welcome to my portfolio",
+        "hello": "Hi, I'm",
+        "description": "Software Developer passionate about building robust and scalable solutions. Specialized in full-stack development with experience in distributed architectures, APIs, and complex systems.",
+        "viewWork": "View my work",
+        "downloadCV": "Download CV"
+    },
+    "about": {
+        "title": "About me",
+        "p1": "I'm a Junior Developer with a background in Computer Engineering (Software Development track) from the Valencian Community. I have hands-on experience in application development, legacy service migration, distributed architectures, and real-time systems.",
+        "p2": "My focus is on writing clean, maintainable code that solves real problems. I enjoy learning new technologies and collaborating in multidisciplinary teams."
+    },
+    "experience": {
+        "title": "Experience"
+    },
+    "projects": {
+        "title": "Featured Projects"
+    },
+    "education": {
+        "title": "Education & Languages"
+    },
+    "contact": {
+        "title": "Let's talk?",
+        "description": "I'm always open to collaborations, interesting projects, and new opportunities. Feel free to reach out through any of these channels.",
+        "call": "Or call me at"
+    }
+}

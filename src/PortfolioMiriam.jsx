@@ -1,8 +1,40 @@
 import './portfolio.css';
+import './i18n';
+import i18n from "i18next";
+import { useTranslation } from "react-i18next";
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, ExternalLink, Code2, Zap } from 'lucide-react';
 
+
 export default function Portfolio() {
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef(null);
+
+  const languageOptions = [
+    {
+      code: "es",
+      name: "Español",
+      flag: "https://flagcdn.com/w40/es.png"
+    },
+    {
+      code: "en",
+      name: "English",
+      flag: "https://flagcdn.com/w40/gb.png"
+    },
+    {
+      code: "fr",
+      name: "Français",
+      flag: "https://flagcdn.com/w40/fr.png"
+    }
+  ];
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("lang", lng);
+    setLangOpen(false);
+  };
+
+  const { t } = useTranslation();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [activeSection, setActiveSection] = useState('sobre-mi');
   const [scrollY, setScrollY] = useState(0);
@@ -36,6 +68,17 @@ export default function Portfolio() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langRef.current && !langRef.current.contains(event.target)) {
+        setLangOpen(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const useReveal = () => {
@@ -283,15 +326,16 @@ export default function Portfolio() {
             </div>
 
             {/* Menu Mobile */}
-            <div className="md:hidden relative flex-1 ml-4">
-              
-              {/* Fade izquierdo */}
-              <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-r from-slate-950/80 to-transparent z-10"></div>
+            <div className="md:hidden relative w-full overflow-hidden">
 
-              {/* Fade derecho */}
-              <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-l from-slate-950/80 to-transparent z-10"></div>
+            {/* Fade izquierdo */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-r from-slate-950/80 to-transparent z-10"></div>
 
-              <div className="flex overflow-x-auto gap-6 scrollbar-hide whitespace-nowrap">
+            {/* Fade derecho */}
+            <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none bg-gradient-to-l from-slate-950/80 to-transparent z-10"></div>
+
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-6 min-w-max px-6 whitespace-nowrap">
                 {menu.map((item) => (
                   <span
                     key={item.id}
@@ -306,6 +350,7 @@ export default function Portfolio() {
                   </span>
                 ))}
               </div>
+            </div>
 
             </div>
           </div>
@@ -313,18 +358,63 @@ export default function Portfolio() {
 
         {/* HERO */}
         <section className="min-h-screen flex items-center px-6 pt-20">
+          {/* Premium Language Selector */}
+          <div ref={langRef} className="absolute top-24 right-8 z-50">
+
+            {/* Current language */}
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="relative w-11 h-11 rounded-full overflow-hidden border border-cyan-400/40 hover:scale-110 transition shadow-lg hover:shadow-cyan-400/40"
+            >
+              <img
+                src={languageOptions.find(l => l.code === i18n.language)?.flag}
+                alt="language"
+                className="w-full h-full object-cover"
+              />
+            </button>
+
+            {/* Dropdown */}
+            <div
+              className={`absolute right-0 mt-3 flex flex-col gap-2 bg-slate-900/90 backdrop-blur-xl border border-cyan-400/20 p-3 rounded-xl transition-all duration-300 origin-top ${
+                langOpen
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+              }`}
+            >
+              {languageOptions.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => changeLanguage(lang.code)}
+                  className="group flex items-center gap-3 px-2 py-1 rounded-lg hover:bg-cyan-400/10 transition"
+                >
+                  <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-600 group-hover:border-cyan-400 transition">
+                    <img
+                      src={lang.flag}
+                      alt={lang.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <span className="text-sm text-gray-300 group-hover:text-cyan-400 transition">
+                    {lang.name}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="max-w-4xl mx-auto">
             <div className="animate-slide-left">
-              <p className="mono text-cyan-400 text-sm tracking-widest">Bienvenido a mi portafolio</p>
+              <p className="mono text-cyan-400 text-sm tracking-widest">
+                {t("hero.welcome")}
+              </p>
               <h1 className="text-7xl font-bold mt-4 leading-tight animate-glow">
-                Hola, soy <span className="text-gradient">Míriam</span>
+                {t("hero.hello")} <span className="text-gradient">Míriam</span>
               </h1>
             </div>
 
             <div className="animate-slide-right mt-6 delay-100">
               <p className="text-2xl font-light text-gray-300 leading-relaxed max-w-2xl">
-                Desarrolladora de Software apasionada por crear soluciones robustas y escalables. 
-                Especializada en desarrollo full-stack con experiencia en arquitecturas distribuidas, APIs y sistemas complejos.
+                {t("hero.description")}
               </p>
             </div>
 
@@ -333,10 +423,10 @@ export default function Portfolio() {
                 onClick={() => scrollToSection("proyectos")}
                 className="px-8 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-400/50 transition transform hover:scale-105"
               >
-                Ver mis trabajos
+                {t("hero.viewWork")}
               </button>
               <button className="px-8 py-3 border border-cyan-400 rounded-lg font-semibold text-cyan-400 hover:bg-cyan-400/10 transition">
-                Descargar CV
+                {t("hero.downloadCV")}
               </button>
             </div>
 
@@ -349,18 +439,17 @@ export default function Portfolio() {
         {/* SOBRE MÍ */}
         <section id="sobre-mi" className="min-h-screen flex items-center px-6 py-20 reveal">
           <div className="max-w-5xl mx-auto w-full">
-            <h2 className="text-5xl font-bold mb-12 text-gradient">Sobre mí</h2>
+            <h2 className="text-5xl font-bold mb-12 text-gradient">
+              {t("about.title")}
+            </h2>
 
             <div className="grid md:grid-cols-2 gap-12">
               <div className="animate-slide-left">
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                  Soy una desarrolladora Junior con formación en Ingeniería Informática (mención en Desarrollo de Software) 
-                  de la Comunidad Valenciana. Cuento con experiencia práctica en el desarrollo de aplicaciones, 
-                  migración de servicios legacy, arquitecturas distribuidas y sistemas de tiempo real.
+                  {t("about.p1")}
                 </p>
                 <p className="text-gray-400 text-lg leading-relaxed">
-                  Mi enfoque está en escribir código limpio, mantenible y que resuelva problemas reales. 
-                  Disfruto aprendiendo nuevas tecnologías y colaborando en equipos multidisciplinarios.
+                  {t("about.p2")}
                 </p>
               </div>
 
@@ -401,7 +490,9 @@ export default function Portfolio() {
         {/* EXPERIENCIA */}
         <section id="experiencia" className="min-h-screen flex items-center px-6 py-20 reveal">
           <div className="max-w-4xl mx-auto w-full">
-            <h2 className="text-5xl font-bold mb-12 text-gradient">Experiencia</h2>
+            <h2 className="text-5xl font-bold mb-12 text-gradient">
+              {t("experience.title")}
+            </h2>
 
             <div className="space-y-8">
               {experience.map((exp, i) => (
@@ -430,7 +521,9 @@ export default function Portfolio() {
         {/* PROYECTOS */}
         <section id="proyectos" className="min-h-screen flex items-center px-6 py-20 reveal">
           <div className="max-w-5xl mx-auto w-full">
-            <h2 className="text-5xl font-bold mb-12 text-gradient">Proyectos Destacados</h2>
+          <h2 className="text-5xl font-bold mb-12 text-gradient">
+            {t("projects.title")}
+          </h2>
 
             <div className="grid md:grid-cols-2 gap-6">
               {projects.map((project, i) => (
@@ -511,14 +604,16 @@ export default function Portfolio() {
         {/* CONTACTO */}
         <section id="contacto" className="min-h-screen flex items-center px-6 py-20 reveal">
           <div className="max-w-4xl mx-auto w-full text-center">
-            <h2 className="text-5xl font-bold mb-6 text-gradient">¿Hablamos?</h2>
+            <h2 className="text-5xl font-bold mb-6 text-gradient">
+              {t("contact.title")}
+            </h2>
+
             <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto">
-              Siempre estoy abierta a colaboraciones, proyectos interesantes y nuevas oportunidades. 
-              No dudes en contactarme a través de cualquiera de estos canales.
+              {t("contact.description")}
             </p>
 
             <div className="flex flex-wrap justify-center gap-8 mb-16">
-              <a href="mailto:[TU_EMAIL]" className="flex items-center gap-3 px-6 py-3 bg-cyan-500/10 border border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/20 transition group">
+              <a href="mailto:miriamdomlop@gmail.com" className="flex items-center gap-3 px-6 py-3 bg-cyan-500/10 border border-cyan-500/50 rounded-lg hover:border-cyan-400 hover:bg-cyan-500/20 transition group">
                 <Mail className="w-5 h-5 text-cyan-400 group-hover:animate-bounce" />
                 <span>miriamdomlop@gmail.com</span>
               </a>
@@ -526,14 +621,16 @@ export default function Portfolio() {
                 <Linkedin className="w-5 h-5 text-pink-400 group-hover:animate-bounce" />
                 <span>LinkedIn</span>
               </a>
-              <a href="https://github.com/[TU_GITHUB]" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 bg-purple-500/10 border border-purple-500/50 rounded-lg hover:border-purple-400 hover:bg-purple-500/20 transition group">
+              {/* <a href="https://github.com/[TU_GITHUB]" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 bg-purple-500/10 border border-purple-500/50 rounded-lg hover:border-purple-400 hover:bg-purple-500/20 transition group">
                 <Github className="w-5 h-5 text-purple-400 group-hover:animate-bounce" />
                 <span>GitHub</span>
-              </a>
+              </a> */}
             </div>
 
             <div className="p-8 bg-slate-900/50 rounded-lg border border-cyan-500/20 animate-pulse-glow">
-              <p className="text-gray-400 mb-4">O llámame al</p>
+              <p className="text-gray-400 mb-4">
+                {t("contact.call")}
+              </p>
               <p className="text-2xl font-bold text-cyan-400 mono">673257028</p>
             </div>
           </div>

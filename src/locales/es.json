@@ -1,0 +1,33 @@
+{
+    "hero": {
+      "welcome": "Bienvenido a mi portafolio",
+      "hello": "Hola, soy",
+      "description": "Desarrolladora de Software apasionada por crear soluciones robustas y escalables. Especializada en desarrollo full-stack con experiencia en arquitecturas distribuidas, APIs y sistemas complejos.",
+      "viewWork": "Ver mis trabajos",
+      "downloadCV": "Descargar CV"
+    },
+  
+    "about": {
+      "title": "Sobre mí",
+      "p1": "Soy una desarrolladora Junior con formación en Ingeniería Informática (mención en Desarrollo de Software) de la Comunidad Valenciana. Cuento con experiencia práctica en el desarrollo de aplicaciones, migración de servicios legacy, arquitecturas distribuidas y sistemas de tiempo real.",
+      "p2": "Mi enfoque está en escribir código limpio, mantenible y que resuelva problemas reales. Disfruto aprendiendo nuevas tecnologías y colaborando en equipos multidisciplinarios."
+    },
+  
+    "experience": {
+      "title": "Experiencia"
+    },
+  
+    "projects": {
+      "title": "Proyectos Destacados"
+    },
+  
+    "education": {
+      "title": "Educación e Idiomas"
+    },
+  
+    "contact": {
+      "title": "¿Hablamos?",
+      "description": "Siempre estoy abierta a colaboraciones, proyectos interesantes y nuevas oportunidades. No dudes en contactarme a través de cualquiera de estos canales.",
+      "call": "O llámame al"
+    }
+  }
